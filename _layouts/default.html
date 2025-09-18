@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- Add Font Awesome for folder icons (optional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Left Sidebar with Nested Folders -->
+    <aside class="sidebar">
+      <h1>{{ site.title }}</h1>
+      <p>{{ site.description }}</p>
+      
+      <nav class="menu">
+        <h2><i class="fas fa-folder-open"></i> Categories</h2>
+        
+        <!-- Generate nested folders from categories -->
+        <ul class="category-list">
+          {% for category in site.categories %}
+            {% assign cat_name = category[0] %}
+            {% assign cat_posts = category[1] %}
+            
+            <!-- Check if this is a top-level category (no parent) -->
+            {% if cat_name contains '/' %}
+              {% continue %}  <!-- Skip child categories (handled later) -->
+            {% endif %}
+
+            <!-- Top-level folder -->
+            <li class="category-item">
+              <div class="category-header">
+                <i class="fas fa-folder"></i>
+                <span>{{ cat_name }}</span>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+              </div>
+              
+              <!-- Subfolders (2nd level) -->
+              <ul class="subcategory-list">
+                {% for post in cat_posts %}
+                  {% if post.categories.size >= 2 %}
+                    {% assign subcat = post.categories[1] %}
+                    {% if subcat != cat_name %}  <!-- Avoid duplicate subcats -->
+                      <li class="subcategory-item">
+                        <div class="subcategory-header">
+                          <i class="fas fa-folder-open"></i>
+                          <span>{{ subcat }}</span>
+                          <i class="fas fa-chevron-down toggle-icon"></i>
+                        </div>
+                        
+                        <!-- Posts in this subcategory (3rd level) -->
+                        <ul class="post-list">
+                          {% for p in site.categories[cat_name] %}
+                            {% if p.categories[1] == subcat %}
+                              <li>
+                                <a href="{{ p.url }}">
+                                  <i class="fas fa-file-alt"></i> {{ p.title }}
+                                </a>
+                              </li>
+                            {% endif %}
+                          {% endfor %}
+                        </ul>
+                      </li>
+                      {% break %}  <!-- Show subcat once per group -->
+                    {% endif %}
+                  {% else %}
+                    <!-- Posts directly under top-level category -->
+                    <li class="post-item">
+                      <a href="{{ post.url }}">
+                        <i class="fas fa-file-alt"></i> {{ post.title }}
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      {{ content }}
+    </main>
+  </div>
+
+  <!-- JavaScript to toggle folders -->
+  <script>
+    // Toggle subfolders when clicking category headers
+    document.querySelectorAll('.category-header, .subcategory-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const list = header.nextElementSibling;  // Get the sublist
+        const icon = header.querySelector('.toggle-icon');  // Get the chevron icon
+        
+        // Toggle visibility
+        list.classList.toggle('show');
+        // Toggle icon direction
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+      });
+    });
+  </script>
+</body>
+</html>
