@@ -1,1 +1,0 @@
-# introduct how to empelement single class method in python
