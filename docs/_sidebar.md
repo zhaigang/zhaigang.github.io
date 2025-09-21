@@ -1,3 +1,3 @@
-- [Home](README.md)
+- [Home](/README.md)
 - Python3
-  - [Single class mode](python3/single_class_mode.md)
+  - [Single class mode](/python3/single_class_mode.md)
