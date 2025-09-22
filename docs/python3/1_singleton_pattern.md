@@ -1,5 +1,7 @@
 # Singleton pattern
 
+[code path](https://github.com/zhaigang/pythonRevise/tree/main/src/test15_singleton_pattern)
+
 ## 1. Why we need it
 
 ```python
@@ -26,7 +28,7 @@ when we import it in file b and c, like this.
 
 ```python
 from a import var_a
-print('the caller is file_a and the instance id is %s' % var_a)
+print('the caller is file_a and the instance id is %s' % id(var_a))
 ```
 
 we can test call it in file d
@@ -156,11 +158,7 @@ obj = MyClass("test")
 obj2 = MyClass("test2")
 ```
 
-
-
 ## 3. other way to implement it.
-
-### 3.1 decrotor-base implement.
 
 1. code
 
@@ -185,7 +183,7 @@ obj2 = MyClass("test2")
 ```
 
 2. run result
-   
+
 ```python
 ggg@DESKTOP-FTDT2HN:/mnt/e/workspace/python_revise/test15_singleton_pattern$ python3 test_class4_decroter.py
 2. __init__ called, and this class id is :139917632559232

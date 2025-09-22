@@ -19,4 +19,6 @@ node -v
 npm i docsify-cli -g # if your environment in wsl maybe need add sudo
 
 https://docsify.js.org/#/more-pages  # use this tools to build pages
+
+docsify serve docs
 ```
