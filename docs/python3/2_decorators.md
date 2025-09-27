@@ -4,6 +4,8 @@ assuming we work in that scenario like that:
 Such as we have some function has writen finished , and it's run well on-line, we want to add a feature to statistic how those function runtime , and write those information to log. we have two choose, the one is we add code to the function, other way we consider that does have one way not broken the exists code and add this feature.
 Otherwise, if we want to add some step before the function execute, such as we have a some function we consume remote resource , and remote require ours could call the interface over 3 times in one minutes. we want to add a flow control to our function. we want to control which check should before the function and after.
 
+decorator is a type of __syntactic sugar__.
+
 # Test it step by step
 
 # what happened when we add a decorator before function
