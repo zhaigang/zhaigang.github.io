@@ -3,7 +3,7 @@
 <table border="0">
             <td style="width:60%">
                 <table border="1" >
-                    <tr>         <td>name</td>         <td>gunther zhai</td>    <td>sex</td>         <td>man</td> </tr>
+                    <tr>         <td>name</td>         <td>gunther zhai</td>    <td>sex</td>         <td>male</td> </tr>
                     <tr>         <td>addr</td>         <td>Shaanxi, 712000, China</td>    <td>birth day</td>         <td>1992.05.02</td> </tr>
                     <tr>         <td>phone</td>         <td>+86 19992980478</td>    <td>email</td>         <td>zhaigang666@outlook.com</td> </tr>
                     <tr>         <td>education</td>         <td>Bachelor degree</td>    <td>college</td>         <td>Shangluo College, China</td> </tr>
